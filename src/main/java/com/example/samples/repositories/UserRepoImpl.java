@@ -2,18 +2,13 @@ package com.example.samples.repositories;
 
 import com.example.samples.models.Login;
 import com.example.samples.models.User;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
-import java.util.function.Consumer;
+
 
 @Repository
 public class UserRepoImpl implements UserRepository {

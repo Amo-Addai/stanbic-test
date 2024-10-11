@@ -8,21 +8,6 @@ import jakarta.persistence.Id;
 import java.util.Date;
 
 
-/*
-
-user:
-id=>id
-username=>username
-first_name=>first index of 'name' split with space
-last_name=>remaining of 'name' after first index of 'name' split with space
-email=>email
-address=>concatenate with space delimitted, (address.street, address.suite, address.city, address.zipcode) with address.geo.lat+':'+address.geo.lng
-company_id=>company_id 'id' FK for 'company' table
-record_date=>current server date
-
-*/
-
-
 @Entity
 public class User {
 

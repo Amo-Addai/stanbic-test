@@ -20,7 +20,6 @@ public class DatabaseSeeder {
     // static db-seeding
     static {
 
-
         /*
 
         user:
@@ -29,9 +28,16 @@ public class DatabaseSeeder {
         first_name=>first index of 'name' split with space
         last_name=>remaining of 'name' after first index of 'name' split with space
         email=>email
-        address=>concatenate with space delimitted, (address.street, address.suite, address.city, address.zipcode) with address.geo.lat+':'+address.geo.lng
+        address=>concatenate with space delimited, (address.street, address.suite, address.city, address.zipcode) with address.geo.lat+':'+address.geo.lng
         company_id=>company_id 'id' FK for 'company' table
         record_date=>current server date
+
+        company:
+        id=>system generated id
+        name=>company.name
+        info=>company.catchPhrase
+        code=>company.bs
+        record_date=>company.record_date
 
         {
             "id": 1, // todo: convert from int to long if required
@@ -202,33 +208,3 @@ public class DatabaseSeeder {
     }
 
 }
-
-/*
-
-{
-    "id": 1, // todo: convert from int to long if required
-    "name": "Leanne Graham", // todo: split into first & last names
-    "username": "Bret",
-    "email": "Sincere@april.biz",
-    "address": { // todo: concatenate into address string
-      "street": "Kulas Light",
-      "suite": "Apt. 556",
-      "city": "Gwenborough",
-      "zipcode": "92998-3874",
-      "geo": {
-        "lat": "-37.3159",
-        "lng": "81.1496"
-      }
-    },
-    // todo: leave out next 2
-    "phone": "1-770-736-8031 x56442",
-    "website": "hildegard.org",
-
-    "company": { // todo: seed Company Table
-      "name": "Romaguera-Crona",
-      "catchPhrase": "Multi-layered client-server neural-net",
-      "bs": "harness real-time e-markets"
-    }
-}
-
-*/

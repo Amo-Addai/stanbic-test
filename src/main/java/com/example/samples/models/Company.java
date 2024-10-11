@@ -8,18 +8,6 @@ import jakarta.persistence.Id;
 import java.util.Date;
 
 
-/*
-
-company:
-id=>system generated id
-name=>company.name
-info=>company.catchPhrase
-code=>company.bs
-record_date=>company.record_date
-
-*/
-
-
 @Entity
 public class Company {
 

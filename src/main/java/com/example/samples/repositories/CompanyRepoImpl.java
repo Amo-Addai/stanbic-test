@@ -7,6 +7,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.util.List;
 
+
 @Repository
 public class CompanyRepoImpl implements CompanyRepository {
 
