@@ -20,8 +20,8 @@ address=>concatenate with space delimitted, (address.street, address.suite, addr
 company_id=>company_id 'id' FK for 'company' table
 record_date=>current server date
 
-
 */
+
 
 @Entity
 public class User {
@@ -32,10 +32,9 @@ public class User {
     private String username;
     private String first_name;
     private String last_name;
-
     private String email;
     private String address;
-    private int company_id;
+    private Long company_id;
     private Date record_date;
 
     public Date getRecord_date() {
@@ -46,11 +45,11 @@ public class User {
         this.record_date = record_date;
     }
 
-    public int getCompany_id() {
+    public Long getCompany_id() {
         return company_id;
     }
 
-    public void setCompany_id(int company_id) {
+    public void setCompany_id(Long company_id) {
         this.company_id = company_id;
     }
 
@@ -94,11 +93,11 @@ public class User {
         this.username = username;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

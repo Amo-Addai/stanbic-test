@@ -13,15 +13,16 @@ import java.util.List;
 @RestController
 public class CompanyController {
 
+    @Autowired
     private CompanyService companyService;
 
     @GetMapping
-    public List<Company> getAllCompanys() {
+    public List<Company> getAll() {
         return companyService.findAll();
     }
 
     @PostMapping
-    public Company createCompany(@RequestBody Company company) {
+    public Company save(@RequestBody Company company) {
         return companyService.save(company);
     }
 

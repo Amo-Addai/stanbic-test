@@ -1,5 +1,6 @@
 package com.example.samples.controllers;
 
+import com.example.samples.models.Login;
 import com.example.samples.models.User;
 import com.example.samples.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +14,21 @@ import java.util.List;
 @RestController
 public class UserController {
 
+    @Autowired
     private UserService userService;
 
+    @PostMapping
+    public Boolean auth(@RequestBody Login login) {
+        return userService.auth(login);
+    }
+
     @GetMapping
-    public List<User> getAllUsers() {
+    public List<User> getAll() {
         return userService.findAll();
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
+    public User save(@RequestBody User user) {
         return userService.save(user);
     }
 
