@@ -20,7 +20,7 @@ public class CompanyRepoImpl implements CompanyRepository {
         if (company != null) {
             entityManager.persist(company); // Insert new entity
         } else {
-            entityManager.merge(company);   // Update existing entity
+            entityManager.merge(company); // Update existing entity
         }
         return company;
     }

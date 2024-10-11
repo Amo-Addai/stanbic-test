@@ -18,7 +18,7 @@ public class UserRepoImpl implements UserRepository {
 
     @Override
     @Transactional
-    public Boolean auth(Login login) { // EntityManager auth
+    public Boolean auth(Login login) {
         String jpql = "SELECT COUNT(u) FROM User u WHERE u.username = :username AND u.email = :email";
         Long count = entityManager.createQuery(jpql, Long.class)
                                   .setParameter("username", login.username)
@@ -33,7 +33,7 @@ public class UserRepoImpl implements UserRepository {
         if (user != null) {
             entityManager.persist(user); // Insert new entity
         } else {
-            entityManager.merge(user);   // Update existing entity
+            entityManager.merge(user); // Update existing entity
         }
         return user;
     }

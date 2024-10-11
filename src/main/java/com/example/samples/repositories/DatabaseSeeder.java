@@ -70,16 +70,16 @@ public class DatabaseSeeder {
         UserRepoImpl userRepo = new UserRepoImpl();
         CompanyRepoImpl companyRepo = new CompanyRepoImpl();
 
-        seedDatabases( // * Function reference replaces callback: obj -> _Repo.save(obj)
-                userRepo::save,
-                companyRepo::save
+        seedDatabases( // * Method reference replaces lambda callback: (T obj) -> _Repo.save(obj)
+                userRepo::save, // (User user) -> userRepo.save(user)
+                companyRepo::save // (Company company) -> companyRepo.save(company)
         );
 
     }
 
     private static <T, U> void seedDatabases(
-            Consumer<T> callback1,
-            Consumer<U> callback2
+            Function<T, T> userRepo_Save,
+            Function<U, U> companyRepo_Save
     ) {
         try {
             HttpResponse<String> data = makeRequest("https://jsonplaceholder.typicode.com/users");
@@ -87,9 +87,26 @@ public class DatabaseSeeder {
             HashMap<T, U> objects = serialize(data);
             if (objects == null) throw new Exception("Data Serialization failed");
             // todo: confirm _this static context exec'd after h2-db setup in-build
-            objects.forEach((user, company) -> {
-                callback1.accept(user);
-                callback2.accept(company);
+            objects.forEach((T user, U company) -> {
+
+                /**
+                 * TODO: can extend User model class with other props - phone, website, & (Company) companyData
+                 * & prune these unnecessary props on database seed
+                 * match Company id after companyRepo.save() with User company_id before userRepo.save()
+                 */
+
+                // cast both generic types to hard-coded expected types (User-Company)
+                Company newCompany = (Company) companyRepo_Save.apply(company); // cast returned-type U -> Company
+                User newUser = (User) user; // cast type T -> User before calling .setCompany_id(..)
+                System.out.println(
+                        "Assigning Company ID: "
+                        + newCompany.getId().toString()
+                        + " ; to User: "
+                        + newUser.getUsername()
+                );
+                newUser.setCompany_id(newCompany.getId());
+                // cast User back -> to T before .applying generic Function<T, T> userRepo_Save
+                userRepo_Save.apply((T) newUser);
             });
         } catch (Exception e) {
             System.out.println("Error making seed-data request");
@@ -128,9 +145,7 @@ public class DatabaseSeeder {
                     mapper.readValue(
                             data.body(),
                             T[].class
-                            // TODO: can extend User model class with other props - phone, website, & (Company) companyData
-                            // TODO: & prune these unnecessary props on database seed
-                            // TODO: match Company id after companyRepo.save() with User company_id before userRepo.save()
+                            // * matched Company id after companyRepo.save() with User company_id before userRepo.save()
                     )
             );
             */
