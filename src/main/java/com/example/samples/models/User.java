@@ -37,6 +37,27 @@ public class User {
     private Long company_id;
     private Date record_date;
 
+    public User() {} // empty constructor for spring - h2-database @Entity relationship
+
+    // custom constructor for db-seeding (not optimal if not required)
+    public User(
+            String username,
+            String first_name,
+            String last_name,
+            String email,
+            String address,
+            Long company_id,
+            Date record_date
+    ) {
+        this.username = username;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.email = email;
+        this.address = address;
+        this.company_id = company_id;
+        this.record_date = record_date;
+    }
+
     public Date getRecord_date() {
         return record_date;
     }

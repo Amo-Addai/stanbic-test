@@ -31,6 +31,21 @@ public class Company {
     private String code;
     private Date record_date;
 
+    public Company() {} // empty constructor for spring - h2-database @Entity relationship
+
+    // custom constructor for db-seeding (not optimal if not required)
+    public Company(
+            String name,
+            String info,
+            String code,
+            Date record_date
+    ) {
+        this.name = name;
+        this.info = info;
+        this.code = code;
+        this.record_date = record_date;
+    }
+
     public Date getRecord_date() {
         return record_date;
     }
