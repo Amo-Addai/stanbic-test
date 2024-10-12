@@ -17,17 +17,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping
+    @PostMapping(path="/users/login")
     public Boolean auth(@RequestBody Login login) {
         return userService.auth(login);
     }
 
-    @GetMapping
+    @GetMapping(path="/users")
     public List<User> getAll() {
         return userService.findAll();
     }
 
-    @PostMapping
+    @PostMapping(path="/users")
     public User save(@RequestBody User user) {
         return userService.save(user);
     }

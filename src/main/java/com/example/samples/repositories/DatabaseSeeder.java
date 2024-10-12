@@ -12,7 +12,6 @@ import java.net.http.HttpResponse;
 import java.time.Instant;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class DatabaseSeeder {

@@ -16,12 +16,12 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
-    @GetMapping
+    @GetMapping(path="/companies")
     public List<Company> getAll() {
         return companyService.findAll();
     }
 
-    @PostMapping
+    @PostMapping(path="/companies")
     public Company save(@RequestBody Company company) {
         return companyService.save(company);
     }

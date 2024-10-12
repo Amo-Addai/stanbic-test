@@ -1,14 +1,18 @@
 package com.example.samples.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
 
 @Entity
+@Table(name = "\"user\"")
+/**
+ H2 is confused by the word user in your SQL command, as it’s a reserved keyword.
+ When H2 sees USER, it thinks you're referring to its internal concept of a user, not your table named user.
+ Modify the table name by escaping it with double quotes.
+ Tells H2 (and most SQL databases) to treat user as a literal identifier rather than a keyword
+ */
 public class User {
 
     @Id
